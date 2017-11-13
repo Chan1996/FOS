@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import static java.util.Collections.list;
 import java.util.List;
 import java.util.Scanner;
+import static javafx.application.Platform.exit;
 /**
  *
  * @author C K
@@ -20,6 +21,8 @@ public class AddStaff {
     /**
      * @param args the command line arguments
      */
+    
+    private static List<Staff> addStaff = new ArrayList<>();
     public static void main(String[] args) {
         // TODO code application logic here
         Menu();
@@ -34,7 +37,7 @@ public class AddStaff {
         System.out.println("1.Add New Staff");
         System.out.println("2.Update Staff Details");
         System.out.println("0.Exit");
-        System.out.println("Please enter number:");
+        System.out.println("\nPlease enter number:");
         selection = reader.nextInt();
         
         
@@ -61,56 +64,88 @@ public class AddStaff {
         String option;
         
         do{
-        
+       
         
         
         Scanner reader = new Scanner(System.in);
         Staff Astaff = new Staff();
         
-        System.out.println("Please enter following information : ");
+        System.out.println("\nPlease enter following information : ");
         
-        System.out.println("Name: ");
+        System.out.println("\nName: ");
         Astaff.setAstaff_name(reader.nextLine());
         
-        System.out.println("IC.NO: ");
+        
+        System.out.println("\nIC.NO: ");
         Astaff.setAstaff_icNo(reader.nextLine());
         
-        System.out.println("Phone.No: ");
+        
+        System.out.println("\nPhone.No: ");
         Astaff.setAstaff_phoneNo(reader.nextLine());
         
-        System.out.println("Status: ");
+        
+        System.out.println("\nStatus: ");
         Astaff.setAstaff_status(reader.nextLine());
         
-        System.out.println("Gender: ");
+        
+        System.out.println("\nGender: ");
         Astaff.setAstaff_gender(reader.nextLine());
         
-        System.out.println("Username: ");
-        Astaff.setAstaff_userName(reader.nextLine());
         
-        System.out.println("Password: ");
+        System.out.println("\nUsername: ");
+        Astaff.setAstaff_userName(reader.nextLine());
+       
+        
+        System.out.println("\nPassword: ");
         Astaff.setAstaff_passWord(reader.nextLine());
         
         
         
-        ArrayList<Staff> addStaff = new ArrayList<Staff>();
+        
+        System.out.println("\nStaff Information Added : ");
+        System.out.println("===========================");
+        System.out.println("Name      : "+Astaff.getAstaff_name());
+        System.out.println("IC.NO     : "+Astaff.getAstaff_icNo());
+        System.out.println("Phone.No  : "+Astaff.getAstaff_phoneNo());
+        System.out.println("Status    : "+Astaff.getAstaff_status());
+        System.out.println("Gender    : "+Astaff.getAstaff_gender());
+        System.out.println("Username  : "+Astaff.getAstaff_userName());
+        System.out.println("Password  : "+Astaff.getAstaff_passWord());
+        
         addStaff.add(Astaff);
         
-        for(int i=0;i < addStaff.size(); i++)
-        {
-              System.out.println(addStaff.size());
-              System.out.println(""+addStaff.get(i));
-        }
         
-        System.out.println("Continue to add new staff? (Yes to continue|No to Menu|Esc to exit)");
+        
+        System.out.println("Continue to add new staff?\n (Yes to continue|Show to show added info|No to Menu|Esc to exit)");
         option = reader.nextLine().toUpperCase();
         
         }while(option.equals("YES"));
         {
         
-            if(option.equals("NO"))
+            if(option.equals("SHOW"))
         {
+           Scanner reader = new Scanner(System.in);
+           System.out.println("\nStaff Information Added : ");
+           System.out.println("===========================");
            
-            Menu();
+           for(int k=0;k<addStaff.size();k++)
+           {
+           
+               System.out.println(1+k+". \n"+addStaff.get(k));
+           }
+           System.out.println("Enter 1 to menu|0 for exit");
+           int choice=reader.nextInt();
+           if(choice==1)
+           {
+           
+               Menu();
+           }
+           else if(choice ==0)
+           {
+           
+               exit();
+           }
+           
         }
         }
         

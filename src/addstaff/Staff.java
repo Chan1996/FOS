@@ -94,7 +94,7 @@ public class Staff {
     
     public String toString(){
     
-        return"Staff Information:\n" +"=================="+"\n" +"Name    : " + Astaff_name +"\n"+ "IC.NO   : " + Astaff_icNo +"\n"+ "Status  : " + Astaff_status +"\n"+ "Gender  : " + Astaff_gender +"\n"+ "Username: " + Astaff_userName +"\n"+
-                "Password: " + Astaff_passWord +"\n";
+        return"Name : " + Astaff_name + " | IC.NO : " + Astaff_icNo + " | Status : " + Astaff_status + " | Gender : " + Astaff_gender + " | Username : " + Astaff_userName +
+                " | Password : " + Astaff_passWord +"\n";
     }
 }

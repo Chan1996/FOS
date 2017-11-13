@@ -70,7 +70,7 @@ public class AddStaff {
         Scanner reader = new Scanner(System.in);
         Staff Astaff = new Staff();
         
-        System.out.println("\nPlease enter following information : ");
+        System.out.println("Please enter following information : ");
         
         System.out.println("\nName: ");
         Astaff.setAstaff_name(reader.nextLine());

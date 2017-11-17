@@ -26,38 +26,78 @@ public class AddMenu  {
 
          String name="";
          double price;
+         char choice ='Y';
+         
          
          do{
          
+       
+        System.out.println("Enter Product Name: ");
         
-        System.out.println("Enter Product Name. ");
         name = scanner.nextLine();
-        System.out.println("Enter Product Price. type -1 to exit");
-        price = Double.parseDouble(scanner.nextLine());
+        scanner.nextLine();
         
         
+        
+        for(int count=0;count<menuList.size();count++){
+            if(name.equals(menuList.get(count).getName())){
+                System.out.println("Duplicate product name, reenter a product name.\n Redirecting to Main Menu . . . . . . . . \n");
+                mainMenu();
+            }
+        }
+        
+        
+        System.out.println("Enter Product Price : ");
+        price = scanner.nextDouble();
+        scanner.nextLine();
+        System.out.println("");
+        System.out.println("Continue? (Y/N)");
+        choice= scanner.next().charAt(0);
+        System.out.println("\n------------------------------------------------------------\n");
+        
+        scanner.nextLine();
         Menu menu = new Menu(productId,name,price);
-        
         menuList.add(menu);
- 
+        
         productId++;
         
-         }while(price!= -1);
+         }while(choice== 'Y'||choice =='y');
       
-    
+      mainMenu();
          
          
         
 }
       
+      public void displayMenu(){
+          System.out.println("M E N U        L I S T \n-----------------------------------------------------\n");
+          String pid="Product ID";
+          String pname="Product Name";
+          String pprice="Price";
+          
+               System.out.println("\n ----------------------------------------------------------------------------------");
+               System.out.printf("\n |%-16s | %-15s |%-20s \n",pid,pname,pprice);
+              System.out.println(menuList.toString());
+              System.out.println("\n ----------------------------------------------------------------------------------\n");
+      }
+      
+      
+
       
       public void mainMenu(){
+          
+          System.out.println("---------------------------------------------------\n M A I N            M E N U \n");
           int choice=0;
          System.out.println("1.Add Menu");
-         System.out.println("2. Update Item Details");
+         System.out.println("2.Display Menu");
          choice = Integer.parseInt(scanner.nextLine());
+         scanner.nextLine();
          if(choice == 1){
              inputMenu();
+         }
+         if(choice == 2)
+         {
+             displayMenu();
          }
          
       }

@@ -16,7 +16,7 @@ public Menu(){
 }
 
 
-public Menu(int prodId,String prodName,Double Price){
+public Menu(int prodId,String prodName,Double price){
 this.prodId=prodId;
 this.prodName=prodName;
 this.price=price;
@@ -88,7 +88,7 @@ public Menu(String prodName) {
       
   @Override
   public String toString() {
-    return String.format("No. %-10d %-20s\n", prodId, prodName);
+    return String.format("\n |%-16d | %-15s | RM %-20.2f|", prodId, prodName,price);
   }
   
 

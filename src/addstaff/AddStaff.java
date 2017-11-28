@@ -5,6 +5,7 @@
  */
 package addstaff;
 
+import static java.lang.Character.isDigit;
 import static java.nio.file.Files.list;
 import static java.rmi.Naming.list;
 import java.util.ArrayList;
@@ -43,13 +44,16 @@ public class AddStaff {
         
         if(selection==1)
         {
+            
         AddStaff();
             
         }
         
         else if(selection==2)
         {
-        System.out.println("Update Staff Details");
+        
+            UpdateStaff();
+            
         }
         
         else
@@ -65,39 +69,91 @@ public class AddStaff {
         
         do{
        
-        
+        String icno;
+        String gender;
+        String pass1;
+        String pass2;
+        String pno;
         
         Scanner reader = new Scanner(System.in);
         Staff Astaff = new Staff();
         
-        System.out.println("Please enter following information : ");
+        System.out.println("\nPlease enter following information : ");
         
         System.out.println("\nName: ");
         Astaff.setAstaff_name(reader.nextLine());
         
         
-        System.out.println("\nIC.NO: ");
-        Astaff.setAstaff_icNo(reader.nextLine());
         
         
-        System.out.println("\nPhone.No: ");
+        do{    
+        System.out.println("\nIC.NO(12 digits): ");
+        icno=reader.nextLine();           
+            
+        }while(icno.length()!=12);
+        {
+        
+            if(icno.length()==12)
+            {
+            
+                Astaff.setAstaff_icNo(icno);
+            }
+        }
+        
+        
+        
+        /**/
+       System.out.println("\nPhone.No: ");
         Astaff.setAstaff_phoneNo(reader.nextLine());
+        /*do{
+        System.out.println("Phone No cannot contains any alphabet !");
+        System.out.println("\nPhone.No: ");
         
+        pno=reader.nextLine();
+        }while();*/
+        
+        
+
+        do{
+        
+        System.out.println("\nGender(Male/Female): ");
+        gender=reader.nextLine().toUpperCase();
+            
+        }while(!gender.equals("MALE")&&!gender.equals("FEMALE"));
+        {
+        
+             if(gender.equals("MALE")|| gender.equals("FEMALE"))
+            {
+            
+                Astaff.setAstaff_gender(gender);
+            }
+        }
         
         System.out.println("\nStatus: ");
         Astaff.setAstaff_status(reader.nextLine());
         
-        
-        System.out.println("\nGender: ");
-        Astaff.setAstaff_gender(reader.nextLine());
-        
-        
         System.out.println("\nUsername: ");
         Astaff.setAstaff_userName(reader.nextLine());
-       
         
-        System.out.println("\nPassword: ");
-        Astaff.setAstaff_passWord(reader.nextLine());
+        
+        do{
+        
+        System.out.println("\nPassword must match !");
+        System.out.println("Password: ");
+        pass1=reader.nextLine();
+        
+        System.out.println("\nRe-type Password: ");
+        pass2=reader.nextLine();
+            
+        }while(!pass1.equals(pass2));
+        {
+        
+            if(pass1.equals(pass2))
+            {
+            
+                Astaff.setAstaff_passWord(pass2);
+            }
+        }
         
         
         
@@ -147,6 +203,11 @@ public class AddStaff {
            }
            
         }
+            else if(option.equals("NO"))
+            {
+            
+                Menu();
+            }
         }
         
         
@@ -155,6 +216,95 @@ public class AddStaff {
         
     }
     
-    
-    
+    private static void UpdateStaff(){
+  
+     
+            Scanner reader = new Scanner(System.in);
+            System.out.println("Please enter staff name : ");
+            String S_name=reader.nextLine();
+            
+            for(int i=0; i<addStaff.size();i++)
+            {
+            
+                if(S_name.equals(addStaff.get(i).getAstaff_name()))
+                        {
+                        
+                            System.out.println("Staff information found !");
+                            System.out.println("\nPlease select information to update| P for Phone| S for status| E for exit");
+                            String option=reader.nextLine().toUpperCase();
+                            
+                            if(option.equals("P"))
+                            {
+                            System.out.println("Staff Information");
+                            System.out.println("=====================");
+                            System.out.println("\n"+addStaff.get(i));
+                            System.out.println("\nPlease enter new phone number : ");
+                            String p_no=reader.nextLine();
+                            
+                            
+                            if(p_no.equals(addStaff.get(i).getAstaff_phoneNo()))
+                            {
+                            
+                                System.out.println("Phone number is same.");
+                                UpdateStaff();
+                            }
+                            else
+                            {
+                            
+                               addStaff.get(i).setAstaff_phoneNo(p_no);
+                            System.out.println("Contact number has been updated !");
+                            System.out.println("========================");
+                            System.out.println(addStaff.get(i));
+                            System.out.println("Continue to update ? Y for yes| N for no");
+                            String con_update=reader.nextLine().toUpperCase();
+                            if(con_update.equals("Y"))
+                            {
+                            
+                                UpdateStaff();
+                            }
+                            else
+                            {
+                            
+                                exit();
+                            } 
+                            }
+                            
+                                
+                            }
+                            
+                            else if(option.equals("S"))
+                            {
+                             System.out.println("Staff Information");
+                            System.out.println("=====================");
+                            System.out.println("\n"+addStaff.get(i));
+                            System.out.println("\nPlease enter new status |A for active| R for resign| : ");
+                            String status=reader.nextLine();
+                            
+                            if(status.equals(addStaff.get(i).getAstaff_status()))
+                            {
+                             
+                                System.out.println("Status is same.");
+                                UpdateStaff();
+                                
+                            }
+                            else
+                            {
+                            
+                               addStaff.get(i).setAstaff_status(status);
+                            System.out.println("Staff status has been updated !");
+                            System.out.println("========================");
+                            System.out.println(addStaff.get(i)); 
+                            }
+                            
+                                
+                            }
+                        }
+                else
+                {
+                
+                    System.out.println("User not found !");
+                    UpdateStaff();
+                }
+            }
+    }
 }

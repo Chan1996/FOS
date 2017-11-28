@@ -291,7 +291,7 @@ public class AddStaff {
                             {
                             
                                addStaff.get(i).setAstaff_status(status);
-                            System.out.println("Staff status has been updated !");
+                            System.out.println("Staff status has been updated !!");
                             System.out.println("========================");
                             System.out.println(addStaff.get(i)); 
                             }

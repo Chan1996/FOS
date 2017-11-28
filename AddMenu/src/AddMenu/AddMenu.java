@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
@@ -91,6 +92,7 @@ public class AddMenu  {
           int choice=0;
          System.out.println("1.Add Menu");
          System.out.println("2.Display Menu");
+         System.out.println("3.Delete Item From Menu");
          choice = Integer.parseInt(scanner.nextLine());
          scanner.nextLine();
          if(choice == 1){
@@ -100,7 +102,42 @@ public class AddMenu  {
          {
              displayMenu();
          }
+         if(choice==3)
+         {
+             deleteItem();
+         }
          
       }
       
-}
+      public void deleteItem(){
+            System.out.println("M E N U        L I S T \n-----------------------------------------------------\n");
+            String pid="Product ID";
+            String pname="Product Name";
+            String pprice="Price";
+            int deleteChoice;
+          
+            System.out.println("\n ----------------------------------------------------------------------------------");
+            System.out.printf("\n |%-16s | %-15s |%-20s \n",pid,pname,pprice);
+            System.out.println(menuList.toString());
+            System.out.println("\n ----------------------------------------------------------------------------------\n");
+            
+            System.out.println("Enter product ID to remove item.");
+            deleteChoice=Integer.parseInt(scanner.nextLine());
+            
+            
+          
+//                menuList.remove(deleteChoice-1);
+
+                Iterator<Menu> it = menuList.iterator();
+                    while (it.hasNext()) {
+             Menu menu = it.next();
+            if (menu.getProdId()==deleteChoice) {
+             it.remove();
+            }
+                    }
+                mainMenu();
+            }
+      }
+      
+      
+

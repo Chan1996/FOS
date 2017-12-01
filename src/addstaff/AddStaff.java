@@ -245,28 +245,49 @@ public class AddStaff {
                             if(p_no.equals(addStaff.get(i).getAstaff_phoneNo()))
                             {
                             
-                                System.out.println("Phone number is same.");
+                                System.out.println("\nPhone number is same.");
                                 UpdateStaff();
                             }
                             else
                             {
-                            
-                               addStaff.get(i).setAstaff_phoneNo(p_no);
-                            System.out.println("Contact number has been updated !");
+                                
+                                for(int z=0;z<p_no.length();z++)
+                                {
+                                
+                                    if(Character.isDigit(p_no.charAt(z)))
+                                    {
+                                    
+                                        addStaff.get(i).setAstaff_phoneNo(p_no);
+                                        
+                             
+                                    }
+                                    else
+                                    {
+                                    
+                                        System.out.println("\nPhone number only digit!");
+                                        UpdateStaff();
+                                    }
+                                    
+                                    
+                                }
+                                //
+                            System.out.println("\nContact number has been updated !");
                             System.out.println("========================");
                             System.out.println(addStaff.get(i));
                             System.out.println("Continue to update ? Y for yes| N for no");
-                            String con_update=reader.nextLine().toUpperCase();
+                                        String con_update=reader.nextLine().toUpperCase();
                             if(con_update.equals("Y"))
                             {
                             
                                 UpdateStaff();
                             }
-                            else
+                            else if(con_update.equals("N"))
                             {
                             
                                 exit();
-                            } 
+                            }
+                                
+                             
                             }
                             
                                 

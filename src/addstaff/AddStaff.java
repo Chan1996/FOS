@@ -8,8 +8,14 @@ package addstaff;
 import static java.lang.Character.isDigit;
 import static java.nio.file.Files.list;
 import static java.rmi.Naming.list;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import static java.util.Collections.list;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 import static javafx.application.Platform.exit;
@@ -33,10 +39,11 @@ public class AddStaff {
     
         Scanner reader = new Scanner(System.in);
         int selection;
-        System.out.println(" HR Executive ");
+        System.out.println("\nHR Executive ");
         System.out.println("==============");
         System.out.println("1.Add New Staff");
         System.out.println("2.Update Staff Details");
+        System.out.println("3.Retrieve Daily Report");
         System.out.println("0.Exit");
         System.out.println("\nPlease enter number:");
         selection = reader.nextInt();
@@ -54,6 +61,12 @@ public class AddStaff {
         
             UpdateStaff();
             
+        }
+        
+        else if(selection==3)
+        {
+        
+            DailyReport();
         }
         
         else
@@ -327,5 +340,63 @@ public class AddStaff {
                     UpdateStaff();
                 }
             }
+    }
+    
+    private static void DailyReport()
+    {
+    
+        class Report
+     {
+        int total_d;
+        String name, distance;
+ 
+    // Constructor
+    //int total_d, String name, String distance  String name, int total_d, String distance
+    public Report(String name, int total_d, String distance)
+    {
+        this.total_d = total_d;
+        this.distance = distance;
+        this.name = name;
+    }
+ 
+    // Used to print student details in main()
+    public String toString()
+    {
+        return this.name + "\t\t" + this.total_d +
+                           "\t\t" + this.distance;
+    }
+}
+ 
+    class SortbyTotal_Delivery implements Comparator<Report>
+    {
+          public int compare(Report a, Report b)
+        {
+          return b.total_d - a.total_d;
+       }
+}
+       
+         Report [] arr = {new Report("Staff 111", 33, "150"),
+                          new Report("Shin Tan",80 , "300"),
+                          new Report("Tosh 234",65 , "200")
+         };
+ 
+              
+              
+              System.out.println("------------------Unsorted Report -------------------");
+              System.out.println("======================================================");
+              System.out.println("=Delivery Man =  Total Delivery =  Total Distance(km)=");
+              System.out.println("======================================================");
+              for (int i=0; i<arr.length; i++)
+              System.out.println(arr[i]);
+              
+              Arrays.sort(arr, new SortbyTotal_Delivery());
+              System.out.println("\n\n------------------ Report -------------------");
+              System.out.println("======================================================");
+              System.out.println("=Delivery Man =  Total Delivery =  Total Distance(km)=");
+              System.out.println("======================================================");
+              for (int i=0; i<arr.length; i++)
+              System.out.println(arr[i]);
+              System.out.println("---------------------------------------------");
+        
     }
 }

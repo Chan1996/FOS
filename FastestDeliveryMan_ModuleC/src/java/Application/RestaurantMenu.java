@@ -31,7 +31,6 @@ public class RestaurantMenu extends HttpServlet {
         
         
         String RestaurantName = request.getParameter("RestaurantList");
-        String RestaurantBranch = request.getParameter("Branch");
         
         try {
             Connection conn = DriverManager.getConnection("jdbc:derby://localhost:1527/ModuleCPrototypedatabase", "ModuleC", "ModuleC");
@@ -74,7 +73,7 @@ public class RestaurantMenu extends HttpServlet {
                         "       <nav></nav>"+
                         "       <center>"+
                         "           <h1>FastestDeliveryman Food Order</h1>"+
-                        "           <form action=\"\" id=\"Search\" method=\"get\">"+
+                        "           <form action=\"RestaurantMenu\" id=\"Search\" method=\"get\">"+
                         "               <fieldset id=\"SearchRestaurant\">"+
                         "                   <legend>Search Restaurant</legend>"+
                         "                   <table>"+
@@ -97,21 +96,24 @@ public class RestaurantMenu extends HttpServlet {
                         "                   <input type=\"submit\" value=\"Search Restaurant\" title=\"Search for selected restaurant\"/>"+
                         "               </fieldset>"+
                         "           </form>");
-            out.println("           <form action=\"RestaurantMenu\" id=\"Results\">"+
+            out.println("           <form action=\"OrderConfirmation\" id=\"Results\" method=\"post\">"+
                         "           <fieldset>"+
                         "               <legend>Menu Items</legend>"+
                         "               <table id=\"menuDisplay\">"+
-                        "               <tr><th>Index</th><th>Item Name</th><th>Item Price</th><th>Order Quantity</th></tr>");
+                        "                   <tr><th>Index</th><th>Item Name</th><th>Item Price</th><th>Order Quantity</th></tr>");
             ResultSet rs;
             rs = pstmt1.executeQuery();
             for (;rs.next() == true;results++){
                 out.println(
-                        "               <tr><td>"+(results+1)+"</td><td>"+rs.getString("Menu_Name")+"</td><td>"+rs.getString("Menu_Price")+"</td><td><input type=\"number\" placeholder=\"0\" id=\""+results+"\" min=\"0\"/></td></tr>"
+                        "                   <input type=\"hidden\" name=\"MenuName\" value=\""+rs.getString("Menu_Name")+"\">"+
+                        "                   <input type=\"hidden\" name=\"MenuPrice\" value=\""+rs.getString("Menu_Price")+"\">"+
+                        "                   <input type=\"hidden\" name=\"MenuID\" value=\""+rs.getString("Menu_ID")+"\">"+
+                        "                   <tr><td>"+(results+1)+"</td><td>"+rs.getString("Menu_Name")+"</td><td>"+rs.getString("Menu_Price")+"</td><td><input type=\"number\" placeholder=\"0\" id=\"MenuQuantity\" min=\"0\"/></td></tr>"
                 );
             }
                           
             out.println("               </table>"+
-                        "           <input type=\"button\" value=\"Order Items\"/>"+
+                        "               <input type=\"submit\" value=\"Order Items\"/>"+
                         "           </form>"+
                         "        </center>"+
                         "    </body>"+

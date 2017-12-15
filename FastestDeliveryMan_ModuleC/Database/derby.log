@@ -1,0 +1,16 @@
+Tue Dec 12 13:49:22 SGT 2017 : Apache Derby Network Server - 10.11.1.2 - (1629631) started and ready to accept connections on port 1527
+----------------------------------------------------------------
+Tue Dec 12 13:49:22 SGT 2017:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): instance a816c00e-0160-4945-3d0d-0000612772c3 
+on database directory C:\Users\lenovo\Desktop\College Items\Degree Software Systems Development 2017\Semester 1\AGILE SOFTWARE DEVELOPMENT\FastestDeliveryMan_ModuleC\Database\ModuleCPrototypedatabase with class loader sun.misc.Launcher$AppClassLoader@5e2de80c 
+Loaded from file:/C:/Program%20Files/Java/jdk1.8.0_66/db/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_66-b17
+user.dir=C:\Program Files\Java\jdk1.8.0_66\db
+os.name=Windows 8.1
+os.arch=amd64
+os.version=6.3
+derby.system.home=C:\Users\lenovo\Desktop\College Items\Degree Software Systems Development 2017\Semester 1\AGILE SOFTWARE DEVELOPMENT\FastestDeliveryMan_ModuleC\Database
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Tue Dec 12 15:19:18 SGT 2017: Shutting down Derby engine
